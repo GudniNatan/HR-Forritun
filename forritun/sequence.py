@@ -18,3 +18,4 @@ for i in range(n):
 
 
 
+#full sequence 0 1 0 1 2 3 6 11 20
