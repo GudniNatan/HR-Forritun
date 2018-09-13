@@ -14,4 +14,4 @@ while True:
                 print(s[i:] + s[:i] + "ay")
             break
     else:
-        print(s)
+        print(s + "ay")
