@@ -5,18 +5,13 @@
 CEILING = 10
 FLOOR = 1
 
-position = int(input("Input an position between 1 and 10: "))
-
-def move(direction):
-    '''Evaluates the input and moves the character. Returns whether or not the input was valid.'''
-    global position
+def move(direction, position):
+    '''Evaluates the input and moves the character. Returns the new position.'''
     if direction == "r":
         position += 1
     elif direction == "l":
         position -= 1
-    else:
-        return False
-    return True
+    return position
 
 def bind(position):
     '''Binds the characters position between the FLOOR and the CEILING. Returns the new position'''
@@ -24,6 +19,7 @@ def bind(position):
         position = CEILING
     elif position < FLOOR:
         position = FLOOR
+    print("New position is:", position)
     return position
 
 def getDirection():
@@ -31,11 +27,14 @@ def getDirection():
     print("l - for moving left\nr - for moving right\nAny other letter for quitting")
     return input("Input your choice: ")
 
-while True:
+def validDirection(direction):
+    return direction == "l" or direction == "r"
+
+position = int(input("Input a position between 1 and 10: "))
+direction = getDirection()
+
+while validDirection(direction):
+    position = move(direction, position)
+    position = bind(position)
     direction = getDirection()
-    if move(direction):
-        position = bind(position)
-    else:
-        break
-    print("New position is:", position)
 print("New position is:", position)
