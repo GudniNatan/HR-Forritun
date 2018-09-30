@@ -8,5 +8,5 @@ def gcd(a, b):
 def lcm(a, b):
     return a * b // gcd(a, b)
 
-print(gcd(12, 18))
+print(gcd(10725, 1386))
 print(lcm(12, 18))

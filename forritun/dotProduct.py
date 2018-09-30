@@ -16,5 +16,4 @@ def dot_product(vector_a, vector_b):
 size = int(input("Input vector size: "))
 vector1 = input_vector(size)
 vector2 = input_vector(size)
-print
 print("Dot product is:", dot_product(vector1, vector2))
