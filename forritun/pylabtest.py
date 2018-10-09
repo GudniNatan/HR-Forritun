@@ -1,6 +1,8 @@
-from pylab import *
+def my_function(start, other=[]):
+    if start in other:
+        return None
+    other.append(start)
+    return start
 
-for x in range(10):
-    print(x)
-else:
-    print("yes")
+print(my_function(other=[], start=5))
+print(my_function(5))

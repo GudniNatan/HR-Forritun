@@ -15,23 +15,22 @@ def primes2(n):
     return [2,3] + [3*i+1|1 for i in range(1,n//3-correction) if sieve[i]]
 
 def reduce_n(a, x):
-    #factors = list()
-    index = 0
-    total = 0
-    i = int(sqrt(x))
-    try:
-        while i >= a[index]:
-            if x % a[index] == 0:
-                x //= a[index]
-                if x == 1:
-                    return total
-                total += a[index]
-                i = int(sqrt(x)) 
-            else:
-                index += 1
-    except:
-        pass
-    return total + x
+    factors = list()
+    index = -1
+    while len(a):
+        if x % a[index] == 0:
+            x //= a[index]
+            factors.append(a[index])
+            if x == 1:
+                return factors
+        else:
+            index -= 1
+            try:
+                a[index]
+            except:
+                break
+    return factors + [x]
+
 
 max_n = 1000000000
 nums = [4, 2001] + [randint(2, max_n) for i in range(20)]
