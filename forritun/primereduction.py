@@ -3,16 +3,19 @@ import time
 from random import randint
 from math import sqrt
 
+
 def primes2(n):
     """ Input n>=6, Returns a list of primes, 2 <= p < n """
-    n, correction = n-n%6+6, 2-(n%6>1)
+    n, correction = n-n % 6+6, 2-(n % 6 > 1)
     sieve = [True] * (n//3)
-    for i in range(1,int(n**0.5)//3+1):
-      if sieve[i]:
-        k=3*i+1|1
-        sieve[k*k//3::2*k] = [False] * ((n//6-k*k//6-1)//k+1)
-        sieve[k*(k-2*(i&1)+4)//3::2*k] = [False] * ((n//6-k*(k-2*(i&1)+4)//6-1)//k+1)
-    return [2,3] + [3*i+1|1 for i in range(1,n//3-correction) if sieve[i]]
+    for i in range(1, int(n**0.5)//3+1):
+        if sieve[i]:
+            k = 3*i+1 | 1
+            sieve[k*k//3::2*k] = [False] * ((n//6-k*k//6-1)//k+1)
+            my_slice = [False] * ((n//6-k*(k-2*(i & 1)+4)//6-1)//k+1)
+            sieve[k*(k-2*(i & 1)+4)//3::2*k] = my_slice
+    return [2, 3] + [3*i+1 | 1 for i in range(1, n//3-correction) if sieve[i]]
+
 
 def reduce_n(a, x):
     factors = list()
@@ -41,7 +44,7 @@ calculated = dict()
 primes = primes2(int(max_n ** 0.5))
 rl = stdin.readline
 w = stdout.write
-n = nums.pop()#int(rl())
+n = nums.pop()  # int(rl())
 start = n
 out = list()
 while n != 4:
@@ -60,7 +63,7 @@ while n != 4:
         calculated[reduce_n(primes, n)] = [x, c]
         print(calculated)
     out.append("%d %d\n" % (x, c))
-    n = nums.pop()#int(rl())
+    n = nums.pop()  # int(rl())
     start = n
 
 w("".join(out))

@@ -1,9 +1,10 @@
 n, t = map(int, input().split())
 
 problems = list()
-a,b,c,t0 = map(int, input().split())
+a, b, c, t0 = map(int, input().split())
 
 problems.append(t0)
+problem_set = set(problems)
 
 for i in range(1, n):
     last = problems[i-1]

@@ -19,7 +19,6 @@ for i in range(1, n):
     problems.append((l, i))
     pset.add(l)
 
-print(problems)
 time = 0
 penalty = 0
 solved = 0

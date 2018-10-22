@@ -5,7 +5,7 @@ s, exp, frac = [int(x, 2) for x in bits]
 
 frac /= 2 ** len(bits[2])
 bias = 2 ** (len(bits[1])- 1) - 1
-V = 0
+V = None
 if "0" in bits[1]:
     if "1" in bits[1]:
         #normalized

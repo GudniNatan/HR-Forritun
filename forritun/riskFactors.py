@@ -12,6 +12,7 @@ Adult Obesity = 13
 """
 COLS_OF_INTEREST = (1, 5, 7, 11, 13)
 
+
 def numerify_CSV_row(row):
     '''Read row of CSV file, remove % signs and convert to float if possible. Returns the updated row as a list.'''
     value_list = row.split(",")
