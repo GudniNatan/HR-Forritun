@@ -9,9 +9,9 @@ def bookmarkWords(bookmark_dict, document, document_id):
     for word in document.split():
         word = word.lower().strip(string.punctuation)
         try:
-            bookmark_dict[word].append(document_id)
+            bookmark_dict[word].add(document_id)
         except KeyError:
-            bookmark_dict[word] = [document_id]
+            bookmark_dict[word] = {document_id}
 
 
 def openFile(filename):
@@ -35,7 +35,7 @@ def readFileDocuments(file_list):
     document_list = list()
     word_reference_dict = dict()
     single_document = ""
-    file_list.pop(0)  # Ignore the first line, as it just declares the first doc.
+    file_list.pop(0)  # Ignore the first line, it just declares the first doc.
     for line in file_list:
         if line == "<NEW DOCUMENT>\n":
             processDocument(single_document, document_list, word_reference_dict)
@@ -56,12 +56,12 @@ def printWordSearchResult(matching_documents):
 def wordSearch(bookmark_dict):
     search_words = input("Enter search words: ").split()
     try:
-        first_results = bookmark_dict[search_words[0]]
-        matching_documents = set(first_results)
-        for term in search_words:
-            ith_word_documents = set(bookmark_dict[term])
+        first_search_word = search_words.pop()
+        matching_documents = bookmark_dict[first_search_word]
+        for word in search_words:
+            ith_word_documents = bookmark_dict[word]
             matching_documents &= ith_word_documents  # narrow down search
-    except KeyError:
+    except (KeyError, IndexError):
         print("No match.")
         return
     printWordSearchResult(matching_documents)
